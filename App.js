@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
-import {createAppContainer} from 'react-navigation';
+import {  Image } from 'react-native';
+import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
-import WriteScreen from './screens/WriteStoryScreen'
-import ReadScreen from './screens/ReadStoryScreen'
+import WriteScreen from './screens/WriteStoryScreen';
+import ReadScreen from './screens/ReadStoryScreen';
+import LoginScreen from './screens/loginscreen';
 
 export default function App() {
   return (
@@ -27,8 +28,9 @@ const tabNavigator = createBottomTabNavigator({
   }})}
 )
 
-const AppContainer = createAppContainer(tabNavigator);
+const switchNav = createSwitchNavigator({
+  A : {screen : LoginScreen},
+  Tabs : {screen : tabNavigator}
+})
 
-const styles = StyleSheet.create({
-  
-});
+const AppContainer = createAppContainer(switchNav);
